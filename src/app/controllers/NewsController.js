@@ -1,6 +1,15 @@
+const Course = require('./../models/Course');
 class NewsController {
-    index(req, res) {
-        res.render('news');
+    index(req, res, next) {
+        Course.find({}).lean()
+            .then(courses => {
+                res.render('news/index', {courses});
+            })
+            .catch(error => next(error));
+    }
+
+    detail(req, res) {
+        res.render('news/detail');
     }
 }
 

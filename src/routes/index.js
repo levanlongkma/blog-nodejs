@@ -1,11 +1,11 @@
-const newsController = require('./app/controllers/NewsController');
+const newRouter = require('./news');
 
 function route(app) {
     app.get('/', (req, res) => {
         res.render('home');
     });
     
-    app.get('/news', newsController.index);    
+    app.use('/news', newRouter);    
 }
 
 module.exports = route;

@@ -4,6 +4,7 @@ const port = 3000;
 const morgan = require('morgan')
 const { engine } = require('express-handlebars');
 const route = require('./routes/index');
+const database = require('./config/database');
 
 app.use(express.static('./src/public'));
 app.use(morgan('combined'));
@@ -14,7 +15,8 @@ app.set('view engine', 'hbs');
 app.set('views', './src/resources/views');
 
 route(app);
+database.connect();
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+    console.log(`Example app listening on port ${port}`);
 })
